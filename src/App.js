@@ -3,27 +3,34 @@ import React, { useEffect, useState } from 'react';
 import './App.css';
 import reducer from './reducer'
 import { connect } from 'react-redux';
-import recipeForm from './components/recipeForm';
+//import recipeForm from './components/recipeForm';
 import CatFact from './components/catFact';
-import recipeList from './components/recipeLIst';
+//import recipeList from './components/recipeLIst';
 import JokeOfTheDay from './components/jokeOfTheDay'
-import data from './data/catFact';
+// import data from './data/catFact';
 
 function App(props) {
-  let catFactData = data;
+  //let catFactData = data;
   //console.log(data[0].fact);
-  const [ jokeData, setJokeData ] = useState("")
+  console.log(props.catData[0].fact);
+  const [ control, setControl ] = useState(false);
+  const [ jokeData, setJokeData ] = useState("");
+  const { loading, catFact } = props;
+  //const [ catFactData, setCatFactData ] = useState("");
 
   // const { loading, data, error } = props;
 
-  useEffect(() => {
-    axios.get("https://catfact.ninja/fact")
-    .then((res) => {
-      //console.log(res.data);
-      catFactData = res.data;
-      //console.log(catFactData.fact);
-    })
-  })
+  // useEffect(() => {
+  //   axios.get("https://catfact.ninja/fact")
+  //   .then((res) => {
+  //     //console.log(res.data);
+  //     setCatFactData(res.data);
+  //     console.log(catFactData);
+  //   })
+  // }, [control])
+
+  //console.log(catFactData);
+
 
   // useEffect(() => {
   //   axios.get("https://official-joke-api.appspot.com/random_joke")
@@ -76,13 +83,13 @@ function App(props) {
 
       <JokeOfTheDay joke={jokeData}></JokeOfTheDay>
 
-      <CatFact catFact={catFactData[0]}></CatFact>
+      <CatFact catFact={props.catData[0].fact}></CatFact>
   
-        <h2>{data.fact}</h2>
+        <h2>{}</h2>
 
       <form>
         <input />
-        <button>Search Stuff</button>
+        <button>Get A Cat Fact!</button>
       </form>
 
       
@@ -94,12 +101,12 @@ function App(props) {
   );
 }
 
-// const mapStateToProps = state => {
-//   return {
-//     data: state.data,
-//     loading: state.loading,
-//     error: state.error
-//   }
-// }
+const mapStateToProps = state => {
+  return {
+    catData: state.catData,
+    loading: state.loading,
+    error: state.error
+  }
+}
 
-export default App;
+export default connect(mapStateToProps)(App);

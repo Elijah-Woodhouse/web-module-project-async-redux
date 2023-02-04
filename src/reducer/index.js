@@ -1,5 +1,7 @@
+import data from './../data/catFact';
+
 const initialState = {
-    catFactdata: [],
+    catData: data,
     loading: false,
     error: ""
 }

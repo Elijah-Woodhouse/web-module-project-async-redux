@@ -5,7 +5,7 @@ const CatFact = (props) => {
 
     return(
         <div>
-            <h3>{catFact.fact}</h3>
+            <h3>{catFact}</h3>
         </div>
     )
 }
