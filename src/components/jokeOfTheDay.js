@@ -4,13 +4,13 @@ const JokeOfTheDay = (props) => {
     const { joke } = props;
 
     useEffect(() => {
-        console.log(joke);
+        //console.log(joke);
     })
     
     return (
         <div id="jokeOfTheDay">
-            <h3>balls{joke.setup}</h3>
-            <h2>wtf{joke.punchline}</h2>
+            <h3>balls</h3>
+            <h2>wtf</h2>
         </div>
     )
 }
