@@ -1,19 +1,11 @@
+import { FETCH_JOKES } from '../actions/catFactActions';
 
 const initialState = {
     jokes: [],
-    loading: false,
-    error: "",
 }
 
-const reducer = (state = initialState, action) => {
+const jokeReducer = (state = initialState, action) => {
     switch(action.type) {
-        case "FETCH_START":
-            return{
-                ...state, 
-                loading: true,
-                error: ""
-            }
-
         case "FETCH_JOKES":
             return {
                 ...state,
@@ -23,3 +15,5 @@ const reducer = (state = initialState, action) => {
             return(state);
     }
 }
+
+export default jokeReducer;

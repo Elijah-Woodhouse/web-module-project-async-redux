@@ -10,42 +10,30 @@ import { getFacts } from './actions/catFactActions'
 import { getJokes } from './actions/jokeActions'
 
 function App(props) {
-  const { loading, catData, getFacts, getJokes, jokes } = props;
+   const { loading, catData, getFacts, getJokes, jokes } = props;
 
-  
   useEffect(() => {
     getFacts();
   }, []);
 
   useEffect(() => {
+    console.log("in here")
     getJokes();
   }, [])
 
-  //console.log(props.jokes)
-  //console.log(props.catData);
-
-  console.log(props.jokes)
 
   return (
     <div className="App">
       <h1>Cat Fact Of The Day!</h1>
-
-      <Joke joke={props.jokes}/>
-
-      <CatFact catFact={props.catData.fact}/>
   
         <h2>{props.jokes}</h2>
+
+        <CatFact catFact={props.catData}/>
 
       <form>
         <input />
         <button>Get A Cat Fact!</button>
       </form>
-
-      
-
-      {/* { loading ? <h3>we are loading</h3> : 
-      <recipeList recipes={recipes}/>
-      } */}
     </div>
   );
 }
