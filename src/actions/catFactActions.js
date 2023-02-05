@@ -7,9 +7,9 @@ export const getFacts = () => {
         dispatch => {
             dispatch({type: FETCH_START});
             axios.get('https://catfact.ninja/fact')
-            .then(res => {
-                //console.log(res.data);
-                dispatch({type: FETCH_SUCCESS, payload: res.data})
+                .then(res => {
+                    //console.log(res.data);
+                    dispatch({type: FETCH_SUCCESS, payload: res.data})
             })
         });
 }

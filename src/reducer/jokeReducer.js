@@ -1,7 +1,6 @@
-import { FETCH_START, FETCH_SUCCESS } from '../actions/catFactActions';
 
 const initialState = {
-    catData: [],
+    jokes: [],
     loading: false,
     error: "",
 }
@@ -14,16 +13,13 @@ const reducer = (state = initialState, action) => {
                 loading: true,
                 error: ""
             }
-        case "FETCH_SUCCESS":
+
+        case "FETCH_JOKES":
             return {
                 ...state,
-                loading: false,
-                catData: action.payload,
-                error: ""
+                jokes: action.payload,
             }
         default:
             return(state);
     }
 }
-
-export default reducer;

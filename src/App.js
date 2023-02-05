@@ -4,32 +4,37 @@ import './App.css';
 import reducer from './reducer'
 import { connect } from 'react-redux';
 import CatFact from './components/catFact';
-import JokeOfTheDay from './components/jokeOfTheDay'
-import { getFacts } from './actions'
+import Jokes from './components/Jokes';
+import Joke from './components/Joke';
+import { getFacts } from './actions/catFactActions'
+import { getJokes } from './actions/jokeActions'
 
 function App(props) {
-  const { loading, catData, getFacts } = props;
+  const { loading, catData, getFacts, getJokes, jokes } = props;
 
   
   useEffect(() => {
     getFacts();
   }, []);
 
+  useEffect(() => {
+    getJokes();
+  }, [])
 
-  console.log(props.catData);
+  //console.log(props.jokes)
+  //console.log(props.catData);
 
-  
-  //console.log(props);
+  console.log(props.jokes)
 
   return (
     <div className="App">
       <h1>Cat Fact Of The Day!</h1>
 
-      <JokeOfTheDay ></JokeOfTheDay>
+      <Joke joke={props.jokes}/>
 
       <CatFact catFact={props.catData.fact}/>
   
-        <h2>{}</h2>
+        <h2>{props.jokes}</h2>
 
       <form>
         <input />
@@ -49,9 +54,10 @@ const mapStateToProps = state => {
   return {
     catData: state.catData,
     loading: state.loading,
-    error: state.error
+    error: state.error,
+    jokes: state.jokes
   }
 }
 
 
-export default connect(mapStateToProps, { getFacts })(App);
+export default connect(mapStateToProps, { getFacts, getJokes })(App);
